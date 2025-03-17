@@ -1,0 +1,9 @@
+Great! Make sure you're using the correct version that matches your system's architecture (e.g., 64-bit). Now, follow these steps:
+
+Create Bootable USB: Use software like Rufus (for Windows) or BalenaEtcher (for Windows, macOS, or Linux) to create a bootable USB drive with the Kali Linux ISO file.
+
+Restart and Enter BIOS/UEFI: Restart your PC and enter the BIOS/UEFI settings (usually by pressing a key like F2, Del, or Esc during startup).
+
+Change Boot Order: In the BIOS/UEFI settings, set the USB drive as the first boot device.
+
+Save and Exit: Save the changes and exit the BIOS/UEFI. Your PC should now boot from the USB drive.

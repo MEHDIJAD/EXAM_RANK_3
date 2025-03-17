@@ -1,5 +1,33 @@
 #include "get_next_line.h"
 
+int ft_len_to_newline(char *str_buf)
+{
+	int len;
+
+	if (!str_buf)
+		return (0);
+	len = 0;
+	while(str_buf[len] && str_buf[len] != '\n')
+		len++;
+	if (str_buf[len] == '\n')
+		len++;
+	return (len);
+}
+
+char *ft_get_line(char **str_buf)
+{
+	int 	len;
+	char 	*line;
+
+	if (!str_buf)
+		return (NULL);
+	len = ft_len_to_newline(*str_buf); //* count line to '\n' (including new line)
+	line = malloc(len + 1); //* allocat for line('\n') and '\0'
+	if (!line)
+		return (NULL);
+		ft_strcpy(line, *str_buf, len + 1); //* copy str_buf to line
+		return (line);
+}
 int ft_found_newline(char *str_buf)
 {
 	int i;
@@ -73,7 +101,7 @@ char *get_next_line(int fd)
 	temp = ft_strdup(str_buf + ft_len_to_new_line(str_buf)); //* give the rest after '\n' to temp
 	if (!temp)
 		return (free(str_buf), free(line), str_buf = NULL, NULL);
-	//! Part5: free the static dt to give it the rest 
+	//! Part5: free the static dt from the line to give it the rest 
 	free(str_buf); //* free static dt, we gave the buf to line 
 	//! Part6: give the rest to static dt 
 	str_buf = temp; //* give the rest to str_buf for next time 
