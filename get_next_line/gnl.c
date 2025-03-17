@@ -22,22 +22,23 @@ char * ft_read_join(char **str_buf, int fd)
 	char	*buf;
 	char	*temp;
 
-	while (!ft_found_newline(*str_buf))
+	while (!ft_found_newline(*str_buf)) //* while ww do not find '\n' in static dt
 	{
-		buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+		buf = malloc(sizeof(char) * BUFFER_SIZE + 1); //* we allocat buf
 		if (!buf)
 			return (free(*str_buf), *str_buf = NULL, NULL);
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0) //* if read fail and return -1
 			return (free(*str_buf), *str_buf = NULL, free(buf), NULL);
-		temp = ft_strjoined(*str_buf, buf);
+		temp = ft_strjoined(*str_buf, buf); //* we added to static dt 
+		//* we use temp so we free the last joind and give str_buf the new one 
 		if (!temp)
 			return (free(*str_buf), *str_buf = NULL, free(buf), NULL);
-		free(*str_buf);
-		*str_buf = temp;
-		free(buf);
+		free(*str_buf); //* free the last value
+		*str_buf = temp; //* give it the new value 
+		free(buf);//* free the buf we are done with it 
 		if (bytes_read == 0)
-			break;
+			break; //* when we get to EOF 
 	} 
 	return (*str_buf);
 
